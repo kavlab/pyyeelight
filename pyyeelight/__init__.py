@@ -49,7 +49,7 @@ class YeelightBulb:
 
     def refreshState(self):
         try:
-            data = json.loads(self.operate_on_bulb('get_prop', '"power", "bright", ""model"'))
+            data = json.loads(self.operate_on_bulb('get_prop', '"power", "bright", "model"'))
         except (TypeError, ValueError) as e:
                 print ('Unexpected error:', e)
                 return
@@ -60,9 +60,9 @@ class YeelightBulb:
         else:
             self.state = 0
 
-        if "set_rgb" in data['result']['model']:
+        if "set_rgb" in data['result'][2]:
             self.support_rgb = True
-        if "set_ct_abx" in data['result']['model']:
+        if "set_ct_abx" in data['result'][2]:
             self.support_color_temp = True
 
 
